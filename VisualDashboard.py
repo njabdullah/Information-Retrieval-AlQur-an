@@ -99,7 +99,13 @@ def preprocess_query(text):
     text = re.sub(r'\d+', '', text)
     text = re.sub(r"[-]", ' ', text)
     text = re.sub(r"[^\w\s']", '', text)
-    tokens = word_tokenize(text)
+
+    try:
+        tokens = word_tokenize(text)
+    except LookupError:
+        nltk.download('punkt')
+        tokens = word_tokenize(text)
+
     tokens = [word for word in tokens if word not in stop_words]
     tokens_clean = [stemmer.stem(word) for word in tokens]
     return ' '.join(tokens_clean).strip()
