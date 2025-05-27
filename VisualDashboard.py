@@ -56,6 +56,10 @@ dbscan_tfidfldapca = joblib.load("Result/Model/dbscan_tfidfldapca.pkl")
 
 # Sidebar - Method Selection & Input
 st.sidebar.title("🔍 Pengaturan Pencarian")
+
+query = st.sidebar.text_input("Ketikkan topik atau kata kunci:")
+top_n = st.sidebar.selectbox("Tampilkan berapa hasil teratas?", [5, 10, 20, "All Results in Selected Cluster"], index=0)
+
 search_mode = st.sidebar.radio(
     "Pilih Mode Pencarian:",
     (
@@ -77,9 +81,6 @@ search_mode = st.sidebar.radio(
         "Model Based (DBSCAN + Hybrid TF-IDF)"
     )
 )
-
-query = st.sidebar.text_input("Ketikkan topik atau kata kunci:")
-top_n = st.sidebar.selectbox("Tampilkan berapa hasil teratas?", [5, 10, 20, "All Results in Selected Cluster"], index=0)
 
 # Main Title
 st.markdown("<h1 style='color: #ffffff;'>📖 Al-Qur'an Information Retrieval</h1>", unsafe_allow_html=True)
