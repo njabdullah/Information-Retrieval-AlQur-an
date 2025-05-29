@@ -11,7 +11,12 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 import nltk
-nltk.download('punkt')
+import os
+
+nltk_path = os.path.join(os.path.expanduser("~"), "nltk_data", "tokenizers", "punkt")
+
+if not os.path.exists(nltk_path):
+    nltk.download("punkt")
 
 factory_stopwords = StopWordRemoverFactory()
 stop_words = set(factory_stopwords.get_stop_words())
