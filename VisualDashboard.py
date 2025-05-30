@@ -125,7 +125,9 @@ def search_clustered_quran(query_vector, method_name, cluster_column, model, emb
     similarities = cosine_similarity([similarity_query_vector], filtered_embeddings)[0]
 
     # Tambahkan pengecekan untuk TF-IDF jika semua similarity = 0
-    if method_name in ["Model Based (KMeans + TF-IDF)", "Model Based (AHC + TF-IDF)"]:
+    if method_name in ["Model Based (KMeans + TF-IDF)", "Model Based (AHC + TF-IDF)", "Model Based (DBSCAN + TF-IDF)",
+                       "Model Based (KMeans + TF-IDF + LDA + PCA)", "Model Based (AHC + TF-IDF + LDA + PCA)", "Model Based (DBSCAN + TF-IDF + LDA + PCA)",
+                       "Model Based (KMeans + Hybrid TF-IDF)", "Model Based (AHC + Hybrid TF-IDF)", "Model Based (DBSCAN + Hybrid TF-IDF)"]:
         if np.all(similarities == 0):
             return None
 
@@ -220,8 +222,8 @@ if query:
                     "Model Based (DBSCAN + Hybrid TF-IDF)": tfidf_query_vectors,
                 }.get(method_name)
 
-                if method_name in ["Model Based (KMeans + W2V)", "Model Based (AHC + W2V)"] and not query_tokens:
-                    st.warning("❌ Kata dalam query tidak dikenali oleh model.")
+                if method_name in ["Model Based (KMeans + W2V)", "Model Based (AHC + W2V)", "Model Based (DBSCAN + W2V)"] and not query_tokens:
+                    st.warning("❌ Kata dalam query tidak dikenali oleh model Word2Vec. Gunakan kata yang muncul di Al-Qur'an.")
                     break
 
                 try:
@@ -237,7 +239,7 @@ if query:
                     )
 
                     if results is None or results.empty:
-                        st.warning("❌ Kata dalam query tidak dikenali oleh model.")
+                        st.warning("⚠️ Tidak ditemukan ayat yang relevan dengan query ini.")
                     else:
                         for _, row in results.iterrows():
                             display_verse(row)
