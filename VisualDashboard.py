@@ -7,7 +7,7 @@ from gensim.models import Word2Vec
 import re
 from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 import nltk
@@ -18,11 +18,9 @@ nltk_path = os.path.join(os.path.expanduser("~"), "nltk_data", "tokenizers", "pu
 if not os.path.exists(nltk_path):
     nltk.download("punkt")
 
-factory_stopwords = StopWordRemoverFactory()
-stop_words = set(factory_stopwords.get_stop_words())
-
-factory_stemmer = StemmerFactory()
-stemmer = factory_stemmer.create_stemmer()
+stop_words = set(stopwords.words('indonesian'))
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 
