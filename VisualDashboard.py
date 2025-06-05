@@ -13,12 +13,20 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import nltk
 import os
 
-nltk_path = os.path.join(os.path.expanduser("~"), "nltk_data", "tokenizers", "punkt")
-
-if not os.path.exists(nltk_path):
+# Cek dan download 'punkt' (untuk tokenizer)
+nltk_path_punkt = os.path.join(os.path.expanduser("~"), "nltk_data", "tokenizers", "punkt")
+if not os.path.exists(nltk_path_punkt):
     nltk.download("punkt")
 
-stop_words = set(stopwords.words('indonesian'))
+# Cek dan download 'stopwords' (untuk stopword)
+try:
+    from nltk.corpus import stopwords
+    stop_words = set(stopwords.words('indonesian'))
+except LookupError:
+    nltk.download('stopwords')
+    stop_words = set(stopwords.words('indonesian'))
+
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 factory = StemmerFactory()
 stemmer = factory.create_stemmer()
 
