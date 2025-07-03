@@ -83,17 +83,17 @@ search_mode = st.sidebar.radio(
         "Model Based (AHC + Hybrid TF-IDF)",
         "Model Based (DBSCAN + Hybrid TF-IDF)",
 
-        # "Model Based (KMeans + BERT)",        
-        # "Model Based (KMeans + TF-IDF)",
-        # "Model Based (KMeans + TF-IDF + LDA + PCA)",
+        "Model Based (KMeans + BERT)",        
+        "Model Based (KMeans + TF-IDF)",
+        "Model Based (KMeans + TF-IDF + LDA + PCA)",
 
-        # "Model Based (AHC + BERT)",
-        # "Model Based (AHC + TF-IDF)",
-        # "Model Based (AHC + TF-IDF + LDA + PCA)",
+        "Model Based (AHC + BERT)",
+        "Model Based (AHC + TF-IDF)",
+        "Model Based (AHC + TF-IDF + LDA + PCA)",
         
-        # "Model Based (DBSCAN + BERT)",
-        # "Model Based (DBSCAN + TF-IDF)",
-        # "Model Based (DBSCAN + TF-IDF + LDA + PCA)",
+        "Model Based (DBSCAN + BERT)",
+        "Model Based (DBSCAN + TF-IDF)",
+        "Model Based (DBSCAN + TF-IDF + LDA + PCA)",
         
         "Model Based (KMeans + W2V)",
         "Model Based (AHC + W2V)",
